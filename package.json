@@ -1,6 +1,6 @@
 {
 	"name": "@elsikora/ai-core",
-	"version": "0.1.0-dev.1",
+	"version": "1.0.0-dev.1",
 	"description": "Unified AI runtime for ElsiKora modules",
 	"keywords": [
 		"ai",
