@@ -1,17 +1,7 @@
-import type { ELLMProvider } from "../enum/llm-provider.enum.js";
-import type { EProfileResolutionErrorCode } from "../enum/profile-resolution-error-code.enum.js";
-import type { TAiCoreModuleId } from "../type/ai-core-module-id.type.js";
-
-/**
- * Profile resolution error metadata.
- */
-interface IProfileResolutionErrorInput {
-	code: EProfileResolutionErrorCode;
-	environmentVariableName?: string;
-	message: string;
-	moduleId: TAiCoreModuleId;
-	provider?: ELLMProvider;
-}
+import type { ELLMProvider } from "@domain/enum/llm-provider.enum";
+import type { EProfileResolutionErrorCode } from "@domain/enum/profile-resolution-error-code.enum";
+import type { IProfileResolutionErrorInput } from "@domain/interface/profile-resolution-error";
+import type { TAiCoreModuleId } from "@domain/type/ai-core-module-id.type";
 
 /**
  * Typed profile resolution error exposed by AI-Core.

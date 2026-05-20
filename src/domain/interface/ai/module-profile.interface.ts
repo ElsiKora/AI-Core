@@ -1,6 +1,5 @@
-import type { ELLMProvider } from "../../enum/llm-provider.enum.js";
-
-import type { IAiRuntimeOptions } from "./runtime-options.interface.js";
+import type { ELLMProvider } from "@domain/enum/llm-provider.enum";
+import type { IAiRuntimeOptions } from "@domain/interface/ai/runtime-options.interface";
 
 /**
  * Per-module profile persisted in config.

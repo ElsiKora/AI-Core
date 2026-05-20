@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 
-import type { IResolvedModuleRuntimeProfile } from "@/domain/interface/resolved-module-runtime-profile.interface.js";
+import type { IResolvedModuleRuntimeProfile } from "@/domain/interface/resolved-module-runtime-profile.interface";
 
-import { ELLMProvider } from "@/domain/enum/llm-provider.enum.js";
+import { ELLMProvider } from "@/domain/enum/llm-provider.enum";
 
 describe("resolved-module-runtime-profile.interface", () => {
 	it("defines runtime profile without credential field", () => {

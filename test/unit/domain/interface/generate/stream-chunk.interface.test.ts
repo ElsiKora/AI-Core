@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 
-import type { IGenerateStreamChunk } from "@/domain/interface/generate/stream-chunk.interface.js";
+import type { IGenerateStreamChunk } from "@/domain/interface/generate/stream-chunk.interface";
 
-import { ELLMProvider } from "@/domain/enum/llm-provider.enum.js";
+import { ELLMProvider } from "@/domain/enum/llm-provider.enum";
 
 describe("stream-chunk.interface", () => {
 	it("IGenerateStreamChunk has delta and aggregated text", () => {

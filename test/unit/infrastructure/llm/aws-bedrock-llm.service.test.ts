@@ -1,9 +1,9 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { Credential } from "@/domain/value-object/credential.value-object.js";
-import { ELLMMessageRole } from "@/domain/enum/llm-message-role.enum.js";
-import { LlmConfiguration } from "@/domain/entity/llm-configuration.entity.js";
-import { ELLMProvider } from "@/domain/enum/llm-provider.enum.js";
+import { Credential } from "@/domain/value-object/credential.value-object";
+import { ELLMMessageRole } from "@/domain/enum/llm-message-role.enum";
+import { LlmConfiguration } from "@/domain/entity/llm-configuration.entity";
+import { ELLMProvider } from "@/domain/enum/llm-provider.enum";
 
 vi.mock("@aws-sdk/client-bedrock-runtime", () => ({
 	BedrockRuntimeClient: class MockBedrockClient {
@@ -22,7 +22,7 @@ vi.mock("@aws-sdk/client-bedrock-runtime", () => ({
 	},
 }));
 
-import { AwsBedrockLlmService } from "@/infrastructure/llm/aws-bedrock-llm.service.js";
+import { AwsBedrockLlmService } from "@/infrastructure/service/llm/aws-bedrock-llm.service";
 
 describe("AwsBedrockLlmService", () => {
 	const service = new AwsBedrockLlmService();

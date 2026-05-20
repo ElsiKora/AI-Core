@@ -1,15 +1,14 @@
-import type { ELLMProvider } from "../../domain/enum/llm-provider.enum.js";
-import type { IAiModuleProfile } from "../../domain/interface/ai/module-profile.interface.js";
-import type { IResolvedModuleProfile } from "../../domain/interface/resolved-module-profile.interface.js";
-import type { TAiCoreModuleId } from "../../domain/type/ai-core-module-id.type.js";
-import type { Credential } from "../../domain/value-object/credential.value-object.js";
-import type { ICliInterfaceService } from "../interface/cli-interface-service.interface.js";
-import type { IConfigService } from "../interface/config-service.interface.js";
-import type { ModelRegistryService } from "../service/model-registry.service.js";
+import type { ICliInterfaceService } from "@application/interface/cli-interface-service.interface";
+import type { IConfigService } from "@application/interface/config-service.interface";
+import type { ModelRegistryService } from "@application/service/model-registry.service";
+import type { PromptCredentialUseCase } from "@application/use-case/prompt-credential.use-case";
+import type { ELLMProvider } from "@domain/enum/llm-provider.enum";
+import type { IAiModuleProfile } from "@domain/interface/ai/module-profile.interface";
+import type { IResolvedModuleProfile } from "@domain/interface/resolved-module-profile.interface";
+import type { TAiCoreModuleId } from "@domain/type/ai-core-module-id.type";
+import type { Credential } from "@domain/value-object/credential.value-object";
 
-import type { PromptCredentialUseCase } from "./prompt-credential.use-case.js";
-
-import { DEFAULT_MAX_RETRIES, DEFAULT_MAX_TOKENS, DEFAULT_TEMPERATURE, DEFAULT_VALIDATION_RETRIES, MAX_RETRY_COUNT, MAX_TEMPERATURE, MIN_RETRY_COUNT } from "../../domain/constant/numeric.constant.js";
+import { NUMERIC_CONSTANT } from "@domain/constant/numeric.constant";
 
 /**
  * Interactive configuration use case.
@@ -37,8 +36,8 @@ export class ConfigureLlmUseCase {
 		let profile: IAiModuleProfile = {
 			model,
 			provider,
-			retries: DEFAULT_MAX_RETRIES,
-			validationRetries: DEFAULT_VALIDATION_RETRIES,
+			retries: NUMERIC_CONSTANT.DEFAULT_MAX_RETRIES,
+			validationRetries: NUMERIC_CONSTANT.DEFAULT_VALIDATION_RETRIES,
 		};
 
 		profile = await this.configureRetrySettings(profile);
@@ -56,9 +55,9 @@ export class ConfigureLlmUseCase {
 			model,
 			moduleId,
 			provider,
-			retries: profile.retries ?? DEFAULT_MAX_RETRIES,
+			retries: profile.retries ?? NUMERIC_CONSTANT.DEFAULT_MAX_RETRIES,
 			temperature: profile.temperature,
-			validationRetries: profile.validationRetries ?? DEFAULT_VALIDATION_RETRIES,
+			validationRetries: profile.validationRetries ?? NUMERIC_CONSTANT.DEFAULT_VALIDATION_RETRIES,
 		};
 	}
 
@@ -69,7 +68,7 @@ export class ConfigureLlmUseCase {
 			return profile;
 		}
 
-		const maxTokensText: string = await this.CLI_INTERFACE.text("Max output tokens:", String(DEFAULT_MAX_TOKENS), String(DEFAULT_MAX_TOKENS), (value: string): string | undefined => {
+		const maxTokensText: string = await this.CLI_INTERFACE.text("Max output tokens:", String(NUMERIC_CONSTANT.DEFAULT_MAX_TOKENS), String(NUMERIC_CONSTANT.DEFAULT_MAX_TOKENS), (value: string): string | undefined => {
 			const parsedValue: number = Number.parseInt(value, 10);
 
 			if (Number.isNaN(parsedValue) || parsedValue < 1) {
@@ -79,10 +78,10 @@ export class ConfigureLlmUseCase {
 			return undefined;
 		});
 
-		const temperatureText: string = await this.CLI_INTERFACE.text("Temperature (0-2):", String(DEFAULT_TEMPERATURE), String(DEFAULT_TEMPERATURE), (value: string): string | undefined => {
+		const temperatureText: string = await this.CLI_INTERFACE.text("Temperature (0-2):", String(NUMERIC_CONSTANT.DEFAULT_TEMPERATURE), String(NUMERIC_CONSTANT.DEFAULT_TEMPERATURE), (value: string): string | undefined => {
 			const parsedValue: number = Number.parseFloat(value);
 
-			if (Number.isNaN(parsedValue) || parsedValue < 0 || parsedValue > MAX_TEMPERATURE) {
+			if (Number.isNaN(parsedValue) || parsedValue < 0 || parsedValue > NUMERIC_CONSTANT.MAX_TEMPERATURE) {
 				return "Please enter a number between 0 and 2";
 			}
 
@@ -103,8 +102,8 @@ export class ConfigureLlmUseCase {
 			return profile;
 		}
 
-		const retriesText: string = await this.CLI_INTERFACE.text("Retries for generation:", String(DEFAULT_MAX_RETRIES), String(DEFAULT_MAX_RETRIES), (value: string): string | undefined => this.validateRetryValue(value));
-		const validationRetriesText: string = await this.CLI_INTERFACE.text("Retries for validation:", String(DEFAULT_VALIDATION_RETRIES), String(DEFAULT_VALIDATION_RETRIES), (value: string): string | undefined => this.validateRetryValue(value));
+		const retriesText: string = await this.CLI_INTERFACE.text("Retries for generation:", String(NUMERIC_CONSTANT.DEFAULT_MAX_RETRIES), String(NUMERIC_CONSTANT.DEFAULT_MAX_RETRIES), (value: string): string | undefined => this.validateRetryValue(value));
+		const validationRetriesText: string = await this.CLI_INTERFACE.text("Retries for validation:", String(NUMERIC_CONSTANT.DEFAULT_VALIDATION_RETRIES), String(NUMERIC_CONSTANT.DEFAULT_VALIDATION_RETRIES), (value: string): string | undefined => this.validateRetryValue(value));
 
 		return {
 			...profile,
@@ -116,8 +115,8 @@ export class ConfigureLlmUseCase {
 	private validateRetryValue(value: string): string | undefined {
 		const parsedValue: number = Number.parseInt(value, 10);
 
-		if (Number.isNaN(parsedValue) || parsedValue < MIN_RETRY_COUNT || parsedValue > MAX_RETRY_COUNT) {
-			return `Please enter a number between ${String(MIN_RETRY_COUNT)} and ${String(MAX_RETRY_COUNT)}`;
+		if (Number.isNaN(parsedValue) || parsedValue < NUMERIC_CONSTANT.MIN_RETRY_COUNT || parsedValue > NUMERIC_CONSTANT.MAX_RETRY_COUNT) {
+			return `Please enter a number between ${String(NUMERIC_CONSTANT.MIN_RETRY_COUNT)} and ${String(NUMERIC_CONSTANT.MAX_RETRY_COUNT)}`;
 		}
 
 		return undefined;

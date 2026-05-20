@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-import { ELLMProvider } from "@/domain/enum/llm-provider.enum.js";
-import { BeanCliInterfaceService } from "@/infrastructure/service/bean-cli-interface.service.js";
+import { ELLMProvider } from "@/domain/enum/llm-provider.enum";
+import { BeanCliInterfaceService } from "@/infrastructure/service/bean-cli-interface.service";
 
 describe("BeanCliInterfaceService", () => {
 	const beanMock = {

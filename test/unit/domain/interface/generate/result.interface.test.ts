@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 
-import type { IGenerateResult } from "@/domain/interface/generate/result.interface.js";
+import type { IGenerateResult } from "@/domain/interface/generate/result.interface";
 
-import { ELLMProvider } from "@/domain/enum/llm-provider.enum.js";
+import { ELLMProvider } from "@/domain/enum/llm-provider.enum";
 
 describe("result.interface", () => {
 	it("IGenerateResult has text, provider, model, attempts", () => {

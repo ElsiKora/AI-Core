@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 
-import { EProfileResolutionErrorCode } from "@/domain/enum/profile-resolution-error-code.enum.js";
-import { ELLMProvider } from "@/domain/enum/llm-provider.enum.js";
-import { ProfileResolutionError } from "@/domain/error/profile-resolution.error.js";
+import { EProfileResolutionErrorCode } from "@/domain/enum/profile-resolution-error-code.enum";
+import { ELLMProvider } from "@/domain/enum/llm-provider.enum";
+import { ProfileResolutionError } from "@/domain/error/profile-resolution.error";
 
 describe("ProfileResolutionError", () => {
 	it("stores typed metadata for profile resolution failures", () => {

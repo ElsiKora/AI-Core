@@ -1,2 +1,2 @@
-export type * from "./message.interface.js";
-export type * from "./model-option.interface.js";
+export type * from "@domain/interface/llm/message.interface";
+export type * from "@domain/interface/llm/model-option.interface";

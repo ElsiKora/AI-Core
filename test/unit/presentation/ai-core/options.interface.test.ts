@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import type { IAiCoreAdapterOptions } from "@/presentation/ai-core/options.interface.js";
+import type { IAiCoreAdapterOptions } from "@/presentation/ai-core/interface/options.interface";
 
 describe("options.interface", () => {
 	it("IAiCoreAdapterOptions allows optional beanOptions", () => {

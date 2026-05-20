@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import type { ISelectOption } from "@/application/interface/select-option.interface.js";
+import type { ISelectOption } from "@/application/interface/select-option.interface";
 
 describe("select-option.interface", () => {
 	it("ISelectOption has label and value", () => {

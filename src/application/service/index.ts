@@ -1,1 +1,1 @@
-export * from "./model-registry.service.js";
+export * from "@application/service/model-registry.service";

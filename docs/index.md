@@ -8,6 +8,8 @@
 
 - `AiCoreAdapter`: public entry point.
 - `PROFILE` mode: generation through module profile from `.elsikora/ai-core.config.js`.
+- Runtime generation options: provider-neutral controls for reasoning, structured output, tools, sampling, retries, timeout handling, and optional credential reprompt on authentication failure.
+- Provider options: provider-specific settings are accepted through `providerOptions` and mapped in infrastructure adapters.
 - `inspectProfile`: non-interactive typed profile inspection.
 - `ensureProfile`: canonical interactive/non-interactive profile preparation.
 - `ProfileResolutionError`: typed fail-fast error for profile readiness issues.

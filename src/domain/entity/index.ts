@@ -1,1 +1,1 @@
-export * from "./llm-configuration.entity.js";
+export * from "@domain/entity/llm-configuration.entity";

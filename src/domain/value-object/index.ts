@@ -1,1 +1,1 @@
-export * from "./credential.value-object.js";
+export * from "@domain/value-object/credential.value-object";

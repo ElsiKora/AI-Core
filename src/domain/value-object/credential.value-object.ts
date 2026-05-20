@@ -1,4 +1,4 @@
-import { MIN_CREDENTIAL_LENGTH, REDACTED_VISIBLE_LENGTH } from "../constant/numeric.constant.js";
+import { NUMERIC_CONSTANT } from "@domain/constant/numeric.constant";
 
 /**
  * Value object that wraps credential strings used by providers.
@@ -36,7 +36,7 @@ export class Credential {
 	 * @returns {boolean} True when it looks like a real credential.
 	 */
 	isValid(): boolean {
-		return this.VALUE.length > MIN_CREDENTIAL_LENGTH && !this.VALUE.includes("your-api-key");
+		return this.VALUE.length > NUMERIC_CONSTANT.MIN_CREDENTIAL_LENGTH && !this.VALUE.includes("your-api-key");
 	}
 
 	/**
@@ -44,10 +44,10 @@ export class Credential {
 	 * @returns {string} Redacted credential.
 	 */
 	toRedacted(): string {
-		if (this.VALUE.length <= REDACTED_VISIBLE_LENGTH) {
+		if (this.VALUE.length <= NUMERIC_CONSTANT.REDACTED_VISIBLE_LENGTH) {
 			return "****";
 		}
 
-		return this.VALUE.slice(0, REDACTED_VISIBLE_LENGTH) + "..." + this.VALUE.slice(-REDACTED_VISIBLE_LENGTH);
+		return this.VALUE.slice(0, NUMERIC_CONSTANT.REDACTED_VISIBLE_LENGTH) + "..." + this.VALUE.slice(-NUMERIC_CONSTANT.REDACTED_VISIBLE_LENGTH);
 	}
 }

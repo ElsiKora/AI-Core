@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { EOpenAIModel } from "@/domain/enum/openai-model.enum.js";
+import { EOpenAIModel } from "@/domain/enum/openai-model.enum";
 
 describe("openai-model.enum", () => {
 	it("exports known model values", () => {

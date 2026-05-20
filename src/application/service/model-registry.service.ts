@@ -1,23 +1,23 @@
-import type { ILlmModelOption } from "../../domain/interface/llm/model-option.interface.js";
-import type { IProviderOption } from "../../domain/interface/provider-option.interface.js";
+import type { ILlmModelOption } from "@domain/interface/llm/model-option.interface";
+import type { IProviderOption } from "@domain/interface/provider-option.interface";
 
-import { PROVIDER_DEFAULT_MODEL_MAP } from "../../domain/constant/provider/default-model.constant.js";
-import { EAnthropicModel } from "../../domain/enum/anthropic-model.enum.js";
-import { EAWSBedrockModel } from "../../domain/enum/aws-bedrock-model.enum.js";
-import { EAzureOpenAIModel } from "../../domain/enum/azure-openai-model.enum.js";
-import { ECerebrasModel } from "../../domain/enum/cerebras-model.enum.js";
-import { EGoogleModel } from "../../domain/enum/google-model.enum.js";
-import { ELLMProvider } from "../../domain/enum/llm-provider.enum.js";
-import { EOllamaModel } from "../../domain/enum/ollama-model.enum.js";
-import { EOpenAIModel } from "../../domain/enum/openai-model.enum.js";
-import { EVercelAiGatewayModel } from "../../domain/enum/vercel-ai-gateway-model.enum.js";
+import { PROVIDER_DEFAULT_MODEL_CONSTANT } from "@domain/constant/provider/default-model.constant";
+import { EAnthropicModel } from "@domain/enum/anthropic-model.enum";
+import { EAWSBedrockModel } from "@domain/enum/aws-bedrock-model.enum";
+import { EAzureOpenAIModel } from "@domain/enum/azure-openai-model.enum";
+import { ECerebrasModel } from "@domain/enum/cerebras-model.enum";
+import { EGoogleModel } from "@domain/enum/google-model.enum";
+import { ELLMProvider } from "@domain/enum/llm-provider.enum";
+import { EOllamaModel } from "@domain/enum/ollama-model.enum";
+import { EOpenAIModel } from "@domain/enum/openai-model.enum";
+import { EVercelAiGatewayModel } from "@domain/enum/vercel-ai-gateway-model.enum";
 
 /**
  * Central registry for provider and model options.
  */
 export class ModelRegistryService {
 	getDefaultModel(provider: ELLMProvider): string {
-		return PROVIDER_DEFAULT_MODEL_MAP[provider];
+		return PROVIDER_DEFAULT_MODEL_CONSTANT.MAP[provider];
 	}
 
 	getModelOptions(provider: ELLMProvider): Array<ILlmModelOption> {

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { EGoogleModel } from "@/domain/enum/google-model.enum.js";
+import { EGoogleModel } from "@/domain/enum/google-model.enum";
 
 describe("google-model.enum", () => {
 	it("exports known model values", () => {

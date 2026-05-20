@@ -1,9 +1,11 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { Credential } from "@/domain/value-object/credential.value-object.js";
-import { ELLMMessageRole } from "@/domain/enum/llm-message-role.enum.js";
-import { LlmConfiguration } from "@/domain/entity/llm-configuration.entity.js";
-import { ELLMProvider } from "@/domain/enum/llm-provider.enum.js";
+import { Credential } from "@/domain/value-object/credential.value-object";
+import { EAiResponseFormatType } from "@/domain/enum/ai/response-format-type.enum";
+import { EAiToolType } from "@/domain/enum/ai/tool/type.enum";
+import { ELLMMessageRole } from "@/domain/enum/llm-message-role.enum";
+import { LlmConfiguration } from "@/domain/entity/llm-configuration.entity";
+import { ELLMProvider } from "@/domain/enum/llm-provider.enum";
 
 vi.mock("openai", () => ({
 	default: class MockOpenAI {
@@ -28,7 +30,7 @@ vi.mock("openai", () => ({
 	},
 }));
 
-import { CerebrasLlmService } from "@/infrastructure/llm/cerebras-llm.service.js";
+import { CerebrasLlmService } from "@/infrastructure/service/llm/cerebras-llm.service";
 
 describe("CerebrasLlmService", () => {
 	const service = new CerebrasLlmService();
@@ -57,5 +59,16 @@ describe("CerebrasLlmService", () => {
 		}
 
 		expect(chunks).toEqual(["Mocked ", "Cerebras response"]);
+	});
+
+	it("rejects tools with responseFormat", async () => {
+		const credential = new Credential("cerebras-key");
+		const config = new LlmConfiguration(ELLMProvider.CEREBRAS, credential, undefined, undefined, undefined, undefined, undefined, {
+			responseFormat: { type: EAiResponseFormatType.JSON_OBJECT },
+			tools: [{ name: "lookup", type: EAiToolType.FUNCTION }],
+		});
+		const messages = [{ content: "Hello", role: ELLMMessageRole.USER }];
+
+		await expect(service.generate(messages, config)).rejects.toThrow("tools and responseFormat");
 	});
 });

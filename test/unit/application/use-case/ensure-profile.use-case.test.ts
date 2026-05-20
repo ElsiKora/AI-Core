@@ -1,17 +1,17 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-import type { IInteractiveShellService } from "@/application/interface/interactive-shell-service.interface.js";
-import type { ConfigureLlmUseCase } from "@/application/use-case/configure-llm.use-case.js";
-import type { InspectProfileUseCase } from "@/application/use-case/inspect-profile.use-case.js";
-import type { PromptCredentialUseCase } from "@/application/use-case/prompt-credential.use-case.js";
+import type { IInteractiveShellService } from "@/application/interface/interactive-shell-service.interface";
+import type { ConfigureLlmUseCase } from "@/application/use-case/configure-llm.use-case";
+import type { InspectProfileUseCase } from "@/application/use-case/inspect-profile.use-case";
+import type { PromptCredentialUseCase } from "@/application/use-case/prompt-credential.use-case";
 
-import { EProfileInspectionStatus } from "@/domain/enum/profile-inspection-status.enum.js";
-import { EProfileResolutionErrorCode } from "@/domain/enum/profile-resolution-error-code.enum.js";
-import { ELLMProvider } from "@/domain/enum/llm-provider.enum.js";
-import { ProfileResolutionError } from "@/domain/error/profile-resolution.error.js";
-import { Credential } from "@/domain/value-object/credential.value-object.js";
+import { EProfileInspectionStatus } from "@/domain/enum/profile-inspection-status.enum";
+import { EProfileResolutionErrorCode } from "@/domain/enum/profile-resolution-error-code.enum";
+import { ELLMProvider } from "@/domain/enum/llm-provider.enum";
+import { ProfileResolutionError } from "@/domain/error/profile-resolution.error";
+import { Credential } from "@/domain/value-object/credential.value-object";
 
-import { EnsureProfileUseCase } from "@/application/use-case/ensure-profile.use-case.js";
+import { EnsureProfileUseCase } from "@/application/use-case/ensure-profile.use-case";
 
 describe("EnsureProfileUseCase", () => {
 	const inspectProfileExecute = vi.fn();
@@ -113,6 +113,45 @@ describe("EnsureProfileUseCase", () => {
 			name: "ProfileResolutionError",
 		} satisfies Partial<ProfileResolutionError>);
 		expect(promptCredentialExecute).not.toHaveBeenCalled();
+	});
+
+	it("uses runtime credential when profile credential is missing", async () => {
+		inspectProfileExecute.mockResolvedValue({
+			environmentVariableName: "OPENAI_API_KEY",
+			profile: {
+				model: "gpt-4o",
+				moduleId: "commitizen",
+				provider: ELLMProvider.OPENAI,
+				retries: 3,
+				validationRetries: 3,
+			},
+			status: EProfileInspectionStatus.MISSING_CREDENTIAL,
+		});
+		isInteractive.mockReturnValue(false);
+
+		const result = await useCase.execute("commitizen", new Credential("sk-runtime"));
+
+		expect(promptCredentialExecute).not.toHaveBeenCalled();
+		expect(result.credential.getValue()).toBe("sk-runtime");
+		expect(result.model).toBe("gpt-4o");
+	});
+
+	it("runtime credential overrides ready environment credential", async () => {
+		inspectProfileExecute.mockResolvedValue({
+			profile: {
+				credential: new Credential("sk-env"),
+				model: "gpt-4o",
+				moduleId: "commitizen",
+				provider: ELLMProvider.OPENAI,
+				retries: 3,
+				validationRetries: 3,
+			},
+			status: EProfileInspectionStatus.READY,
+		});
+
+		const result = await useCase.execute("commitizen", new Credential("sk-runtime"));
+
+		expect(result.credential.getValue()).toBe("sk-runtime");
 	});
 
 	it("prompts only credential when profile exists but credential is missing in interactive shell", async () => {

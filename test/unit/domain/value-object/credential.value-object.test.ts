@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { Credential } from "@/domain/value-object/credential.value-object.js";
+import { Credential } from "@/domain/value-object/credential.value-object";
 
 describe("Credential", () => {
 	it("constructs with non-empty string", () => {
@@ -34,7 +34,7 @@ describe("Credential", () => {
 	});
 
 	it("isValid returns false for short credential", () => {
-		const cred = new Credential("ab"); // length 2 < MIN_CREDENTIAL_LENGTH(3)
+		const cred = new Credential("ab"); // length 2 < NUMERIC_CONSTANT.MIN_CREDENTIAL_LENGTH(3)
 		expect(cred.isValid()).toBe(false);
 	});
 

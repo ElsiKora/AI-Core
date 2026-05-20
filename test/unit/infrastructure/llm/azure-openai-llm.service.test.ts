@@ -1,9 +1,9 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { Credential } from "@/domain/value-object/credential.value-object.js";
-import { ELLMMessageRole } from "@/domain/enum/llm-message-role.enum.js";
-import { LlmConfiguration } from "@/domain/entity/llm-configuration.entity.js";
-import { ELLMProvider } from "@/domain/enum/llm-provider.enum.js";
+import { Credential } from "@/domain/value-object/credential.value-object";
+import { ELLMMessageRole } from "@/domain/enum/llm-message-role.enum";
+import { LlmConfiguration } from "@/domain/entity/llm-configuration.entity";
+import { ELLMProvider } from "@/domain/enum/llm-provider.enum";
 
 vi.mock("openai", () => ({
 	default: class MockOpenAI {
@@ -28,7 +28,7 @@ vi.mock("openai", () => ({
 	},
 }));
 
-import { AzureOpenAiLlmService } from "@/infrastructure/llm/azure-openai-llm.service.js";
+import { AzureOpenAiLlmService } from "@/infrastructure/service/llm/azure-openai-llm.service";
 
 describe("AzureOpenAiLlmService", () => {
 	const service = new AzureOpenAiLlmService();

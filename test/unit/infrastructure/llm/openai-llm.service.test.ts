@@ -1,11 +1,11 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { Credential } from "@/domain/value-object/credential.value-object.js";
-import { ELLMMessageRole } from "@/domain/enum/llm-message-role.enum.js";
-import { LlmConfiguration } from "@/domain/entity/llm-configuration.entity.js";
-import { ELLMProvider } from "@/domain/enum/llm-provider.enum.js";
+import { Credential } from "@/domain/value-object/credential.value-object";
+import { ELLMMessageRole } from "@/domain/enum/llm-message-role.enum";
+import { LlmConfiguration } from "@/domain/entity/llm-configuration.entity";
+import { ELLMProvider } from "@/domain/enum/llm-provider.enum";
 
-import { OpenAiLlmService } from "@/infrastructure/llm/openai-llm.service.js";
+import { OpenAiLlmService } from "@/infrastructure/service/llm/openai-llm.service";
 
 vi.mock("openai", () => ({
 	default: class MockOpenAI {
@@ -26,6 +26,12 @@ vi.mock("openai", () => ({
 					});
 				}),
 			},
+		};
+
+		responses = {
+			create: vi.fn().mockResolvedValue({
+				output_text: "Mocked OpenAI response",
+			}),
 		};
 	},
 }));

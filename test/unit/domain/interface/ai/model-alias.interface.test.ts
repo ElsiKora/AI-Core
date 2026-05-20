@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 
-import type { IAiModelAlias } from "@/domain/interface/ai/model-alias.interface.js";
+import type { IAiModelAlias } from "@/domain/interface/ai/model-alias.interface";
 
-import { ELLMProvider } from "@/domain/enum/llm-provider.enum.js";
+import { ELLMProvider } from "@/domain/enum/llm-provider.enum";
 
 describe("model-alias.interface", () => {
 	it("IAiModelAlias has model and provider", () => {

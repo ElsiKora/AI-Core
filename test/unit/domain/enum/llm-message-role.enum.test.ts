@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { ELLMMessageRole } from "@/domain/enum/llm-message-role.enum.js";
+import { ELLMMessageRole } from "@/domain/enum/llm-message-role.enum";
 
 describe("llm-message-role.enum", () => {
 	it("exports expected role values", () => {

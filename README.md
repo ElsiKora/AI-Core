@@ -26,7 +26,24 @@ export default {
 		"your-module-id": {
 			model: "gpt-4o",
 			provider: "openai",
+			reasoning: {
+				effort: "medium",
+			},
+			responseFormat: {
+				isStrict: true,
+				name: "commit_message",
+				schema: {
+					type: "object",
+					properties: {
+						message: { type: "string" },
+					},
+					required: ["message"],
+				},
+				type: "json_schema",
+			},
 			retries: 3,
+			shouldRepromptCredentialOnAuthenticationFailure: true,
+			shouldUseParallelToolCalls: true,
 			validationRetries: 3,
 		},
 	},
@@ -34,6 +51,14 @@ export default {
 ```
 
 Credentials are resolved from environment variables by provider (for example `OPENAI_API_KEY`).
+
+## Runtime generation options
+
+Profiles and direct generation requests accept provider-neutral controls such as `maxTokens`, `temperature`, `topP`, `topK`, `seed`, `stopSequences`, `timeoutMs`, `reasoning`, `responseFormat`, `tools`, `toolChoice`, `shouldUseParallelToolCalls`, and `shouldRepromptCredentialOnAuthenticationFailure`.
+
+Set `shouldRepromptCredentialOnAuthenticationFailure: true` when an interactive CLI should ask for a replacement credential if the current runtime credential, including one resolved from the environment, is rejected by the provider.
+
+Provider-specific options live under `providerOptions` and are mapped only inside infrastructure adapters. Examples include OpenAI `apiMode`, `serviceTier`, `textVerbosity`, and `shouldStore`; Anthropic `speed`, `serviceTier`, and `thinking`; Google `thinkingConfig`; AWS Bedrock guardrail and performance options; Cerebras reasoning/logprob options; Ollama reasoning controls; and Vercel AI Gateway provider options.
 
 ## Public adapter API
 

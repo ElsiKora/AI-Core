@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
 
-import { ELLMProvider } from "@/domain/enum/llm-provider.enum.js";
-import { EOpenAIModel } from "@/domain/enum/openai-model.enum.js";
+import { ELLMProvider } from "@/domain/enum/llm-provider.enum";
+import { EOpenAIModel } from "@/domain/enum/openai-model.enum";
 
-import { ModelRegistryService } from "@/application/service/model-registry.service.js";
+import { ModelRegistryService } from "@/application/service/model-registry.service";
 
 describe("ModelRegistryService", () => {
 	const service = new ModelRegistryService();

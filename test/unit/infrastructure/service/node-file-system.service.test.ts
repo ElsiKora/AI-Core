@@ -2,7 +2,7 @@ import path from "node:path";
 import { readFile, rm } from "node:fs/promises";
 import { describe, expect, it } from "vitest";
 
-import { NodeFileSystemService } from "@/infrastructure/service/node-file-system.service.js";
+import { NodeFileSystemService } from "@/infrastructure/service/node-file-system.service";
 
 describe("NodeFileSystemService", () => {
 	const service = new NodeFileSystemService();

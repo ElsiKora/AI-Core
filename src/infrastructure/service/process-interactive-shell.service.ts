@@ -1,4 +1,4 @@
-import type { IInteractiveShellService } from "../../application/interface/interactive-shell-service.interface.js";
+import type { IInteractiveShellService } from "@application/interface/interactive-shell-service.interface";
 
 /**
  * Node process-backed interactive shell detector.

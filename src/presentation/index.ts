@@ -1,1 +1,1 @@
-export * from "./ai-core/index.js";
+export * from "@presentation/ai-core";

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import type { ILlmService } from "@/application/interface/llm-service.interface.js";
+import type { ILlmService } from "@/application/interface/llm-service.interface";
 
 describe("llm-service.interface", () => {
 	it("ILlmService supports generate and optional generateStream", async () => {

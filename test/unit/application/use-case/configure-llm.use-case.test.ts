@@ -1,15 +1,15 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-import type { ICliInterfaceService } from "@/application/interface/cli-interface-service.interface.js";
-import type { IConfigService } from "@/application/interface/config-service.interface.js";
-import type { ICredentialResolver } from "@/application/interface/credential-resolver.interface.js";
+import type { ICliInterfaceService } from "@/application/interface/cli-interface-service.interface";
+import type { IConfigService } from "@/application/interface/config-service.interface";
+import type { ICredentialResolver } from "@/application/interface/credential-resolver.interface";
 
-import { Credential } from "@/domain/value-object/credential.value-object.js";
-import { ELLMProvider } from "@/domain/enum/llm-provider.enum.js";
+import { Credential } from "@/domain/value-object/credential.value-object";
+import { ELLMProvider } from "@/domain/enum/llm-provider.enum";
 
-import { ModelRegistryService } from "@/application/service/model-registry.service.js";
-import { ConfigureLlmUseCase } from "@/application/use-case/configure-llm.use-case.js";
-import { PromptCredentialUseCase } from "@/application/use-case/prompt-credential.use-case.js";
+import { ModelRegistryService } from "@/application/service/model-registry.service";
+import { ConfigureLlmUseCase } from "@/application/use-case/configure-llm.use-case";
+import { PromptCredentialUseCase } from "@/application/use-case/prompt-credential.use-case";
 
 describe("ConfigureLlmUseCase", () => {
 	const mockConfigService: IConfigService = {

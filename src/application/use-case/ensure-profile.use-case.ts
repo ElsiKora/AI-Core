@@ -1,16 +1,15 @@
-import type { TProfileInspectionResult } from "../../domain/interface/profile-inspection-result.interface.js";
-import type { IResolvedModuleProfile } from "../../domain/interface/resolved-module-profile.interface.js";
-import type { TAiCoreModuleId } from "../../domain/type/ai-core-module-id.type.js";
-import type { Credential } from "../../domain/value-object/credential.value-object.js";
-import type { IInteractiveShellService } from "../interface/interactive-shell-service.interface.js";
+import type { IInteractiveShellService } from "@application/interface/interactive-shell-service.interface";
+import type { ConfigureLlmUseCase } from "@application/use-case/configure-llm.use-case";
+import type { InspectProfileUseCase } from "@application/use-case/inspect-profile.use-case";
+import type { PromptCredentialUseCase } from "@application/use-case/prompt-credential.use-case";
+import type { IResolvedModuleProfile } from "@domain/interface/resolved-module-profile.interface";
+import type { TAiCoreModuleId } from "@domain/type/ai-core-module-id.type";
+import type { TProfileInspectionResult } from "@domain/type/profile-inspection-result.type";
+import type { Credential } from "@domain/value-object/credential.value-object";
 
-import type { ConfigureLlmUseCase } from "./configure-llm.use-case.js";
-import type { InspectProfileUseCase } from "./inspect-profile.use-case.js";
-import type { PromptCredentialUseCase } from "./prompt-credential.use-case.js";
-
-import { EProfileInspectionStatus as ProfileInspectionStatus } from "../../domain/enum/profile-inspection-status.enum.js";
-import { EProfileResolutionErrorCode } from "../../domain/enum/profile-resolution-error-code.enum.js";
-import { ProfileResolutionError } from "../../domain/error/profile-resolution.error.js";
+import { EProfileInspectionStatus as ProfileInspectionStatus } from "@domain/enum/profile-inspection-status.enum";
+import { EProfileResolutionErrorCode } from "@domain/enum/profile-resolution-error-code.enum";
+import { ProfileResolutionError } from "@domain/error/profile-resolution.error";
 
 /**
  * Ensures that module profile is runtime-ready according to canonical behavior.
@@ -31,11 +30,18 @@ export class EnsureProfileUseCase {
 		this.INTERACTIVE_SHELL_SERVICE = interactiveShellService;
 	}
 
-	async execute(moduleId: TAiCoreModuleId): Promise<IResolvedModuleProfile> {
+	async execute(moduleId: TAiCoreModuleId, runtimeCredential?: Credential): Promise<IResolvedModuleProfile> {
 		const inspectionResult: TProfileInspectionResult = await this.INSPECT_PROFILE_USE_CASE.execute(moduleId);
 
 		switch (inspectionResult.status) {
 			case ProfileInspectionStatus.MISSING_CREDENTIAL: {
+				if (runtimeCredential) {
+					return {
+						...inspectionResult.profile,
+						credential: runtimeCredential,
+					};
+				}
+
 				if (!this.INTERACTIVE_SHELL_SERVICE.isInteractive()) {
 					throw new ProfileResolutionError({
 						code: EProfileResolutionErrorCode.MISSING_CREDENTIAL,
@@ -67,7 +73,12 @@ export class EnsureProfileUseCase {
 			}
 
 			case ProfileInspectionStatus.READY: {
-				return inspectionResult.profile;
+				return runtimeCredential
+					? {
+							...inspectionResult.profile,
+							credential: runtimeCredential,
+						}
+					: inspectionResult.profile;
 			}
 
 			case ProfileInspectionStatus.INVALID_PROFILE: {

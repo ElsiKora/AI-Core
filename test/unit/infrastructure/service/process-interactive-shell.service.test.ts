@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it } from "vitest";
 
-import { ProcessInteractiveShellService } from "@/infrastructure/service/process-interactive-shell.service.js";
+import { ProcessInteractiveShellService } from "@/infrastructure/service/process-interactive-shell.service";
 
 const ORIGINAL_STDIN_TTY: boolean | undefined = process.stdin.isTTY;
 const ORIGINAL_STDOUT_TTY: boolean | undefined = process.stdout.isTTY;

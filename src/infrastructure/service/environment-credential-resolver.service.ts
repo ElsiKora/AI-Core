@@ -1,16 +1,16 @@
-import type { ICredentialResolver } from "../../application/interface/credential-resolver.interface.js";
-import type { ELLMProvider } from "../../domain/enum/llm-provider.enum.js";
-import type { Credential } from "../../domain/value-object/credential.value-object.js";
+import type { ICredentialResolver } from "@application/interface/credential-resolver.interface";
+import type { ELLMProvider } from "@domain/enum/llm-provider.enum";
+import type { Credential } from "@domain/value-object/credential.value-object";
 
-import { PROVIDER_ENV_VARIABLE_MAP } from "../../domain/constant/provider/env-variable.constant.js";
-import { Credential as CredentialValue } from "../../domain/value-object/credential.value-object.js";
+import { PROVIDER_ENVIRONMENT_VARIABLE_CONSTANT } from "@domain/constant/provider/environment-variable.constant";
+import { Credential as CredentialValue } from "@domain/value-object/credential.value-object";
 
 /**
  * Reads provider credentials from environment variables.
  */
 export class EnvironmentCredentialResolver implements ICredentialResolver {
 	resolve(provider: ELLMProvider): Credential | null {
-		const environmentVariableName: string | undefined = PROVIDER_ENV_VARIABLE_MAP[provider];
+		const environmentVariableName: string | undefined = PROVIDER_ENVIRONMENT_VARIABLE_CONSTANT.MAP[provider];
 
 		if (!environmentVariableName) {
 			return null;
