@@ -78,6 +78,7 @@
 		"@commitlint/cz-commitlint": "^20.4.1",
 		"@elsikora/cladi-testing": "^1.0.2",
 		"@elsikora/eslint-config": "^3.10.0",
+		"@elsikora/git-branch-lint": "^1.2.2",
 		"@rollup/plugin-typescript": "^12.3.0",
 		"@saithodev/semantic-release-backmerge": "^4.0.1",
 		"@semantic-release/changelog": "^6.0.3",
