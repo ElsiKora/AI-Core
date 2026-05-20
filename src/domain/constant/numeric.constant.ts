@@ -1,0 +1,10 @@
+export const DEFAULT_MAX_RETRIES: number = 3;
+export const DEFAULT_MAX_TOKENS: number = 2048;
+export const DEFAULT_TEMPERATURE: number = 0.2;
+export const DEFAULT_VALIDATION_RETRIES: number = 3;
+export const MAX_RETRY_COUNT: number = 10;
+export const MAX_TEMPERATURE: number = 2;
+export const MIN_CREDENTIAL_LENGTH: number = 3;
+export const MIN_RETRY_COUNT: number = 1;
+export const MIN_SELECT_OPTIONS_FOR_SEARCH: number = 8;
+export const REDACTED_VISIBLE_LENGTH: number = 4;

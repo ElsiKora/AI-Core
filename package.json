@@ -1,0 +1,109 @@
+{
+	"name": "@elsikora/ai-core",
+	"version": "0.1.0-dev.1",
+	"description": "Unified AI runtime for ElsiKora modules",
+	"keywords": [
+		"ai",
+		"llm",
+		"openai",
+		"anthropic",
+		"google",
+		"azure-openai",
+		"aws-bedrock",
+		"ollama",
+		"runtime"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/ElsiKora/AI-Core"
+	},
+	"license": "MIT",
+	"author": "ElsiKora",
+	"sideEffects": false,
+	"type": "module",
+	"exports": {
+		"import": "./dist/esm/index.js",
+		"require": "./index.cjs"
+	},
+	"files": [
+		"index.cjs",
+		"dist"
+	],
+	"scripts": {
+		"prebuild": "rimraf dist",
+		"build": "npm run prebuild && rollup -c",
+		"build:test": "npm run prebuild && rollup -c rollup.test.config.js",
+		"commit": "cz",
+		"docs:index": "node -e \"const fs=require('node:fs');fs.accessSync('docs/index.md');\"",
+		"docs:readme": "node -e \"const fs=require('node:fs');fs.accessSync('README.md');\"",
+		"format": "prettier --check .",
+		"format:fix": "prettier --write .",
+		"lint": "eslint ./",
+		"lint:all": "npm run lint && npm run lint:types",
+		"lint:all:fix": "npm run lint:fix && npm run lint:types:fix",
+		"lint:fix": "eslint --fix ./",
+		"lint:types": "tsc --noEmit",
+		"lint:types:fix": "tsc --noEmit --skipLibCheck",
+		"prepare": "husky",
+		"release": "semantic-release",
+		"test:all": "npm run test:unit && npm run test:e2e",
+		"test:e2e": "npm run build:test && vitest --config vitest.e2e.config.js --typecheck.tsconfig tsconfig.json",
+		"test:unit": "vitest run --config vitest.unit.config.js",
+		"validate:docs": "npm run docs:readme && npm run docs:index",
+		"validate:fast": "npm run lint && npm run lint:types && npm run test:unit",
+		"validate:heavy": "npm run validate:pr",
+		"validate:pr": "npm run lint:all && npm run test:all && npm run validate:docs"
+	},
+	"config": {
+		"commitizen": {
+			"path": "@commitlint/cz-commitlint"
+		}
+	},
+	"dependencies": {
+		"@anthropic-ai/sdk": "^0.78.0",
+		"@aws-sdk/client-bedrock-runtime": "^3.995.0",
+		"@elsikora/bean": "^1.0.0",
+		"@elsikora/cladi": "^2.1.2",
+		"@elsikora/configer": "^1.0.0",
+		"@google/generative-ai": "^0.24.1",
+		"ai": "^5.0.36",
+		"dotenv": "^17.3.1",
+		"javascript-stringify": "^2.1.0",
+		"openai": "^6.22.0",
+		"yaml": "^2.8.2"
+	},
+	"devDependencies": {
+		"@commitlint/cli": "^20.4.2",
+		"@commitlint/config-conventional": "^20.4.2",
+		"@commitlint/cz-commitlint": "^20.4.1",
+		"@elsikora/cladi-testing": "^1.0.2",
+		"@elsikora/eslint-config": "^3.10.0",
+		"@rollup/plugin-typescript": "^12.3.0",
+		"@saithodev/semantic-release-backmerge": "^4.0.1",
+		"@semantic-release/changelog": "^6.0.3",
+		"@semantic-release/commit-analyzer": "^13.0.1",
+		"@semantic-release/git": "^10.0.1",
+		"@semantic-release/github": "^12.0.6",
+		"@semantic-release/npm": "^13.1.4",
+		"@semantic-release/release-notes-generator": "^14.1.0",
+		"@types/node": "^25.3.0",
+		"@vitest/coverage-v8": "^4.0.18",
+		"commitizen": "^4.3.1",
+		"conventional-changelog-conventionalcommits": "^9.1.0",
+		"eslint": "^9.39.3",
+		"eslint-plugin-n": "^17.24.0",
+		"husky": "^9.1.7",
+		"lint-staged": "^16.2.7",
+		"prettier": "^3.8.1",
+		"rimraf": "^6.1.3",
+		"rollup": "^4.58.0",
+		"rollup-plugin-dts-path-alias": "^0.0.3",
+		"rollup-plugin-generate-package-json": "^3.2.0",
+		"semantic-release": "^25.0.3",
+		"typescript": "^5.9.3",
+		"vitest": "^4.0.18"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}
