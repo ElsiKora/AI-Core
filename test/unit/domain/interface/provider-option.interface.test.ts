@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 
-import type { IProviderOption } from "@/domain/interface/provider-option.interface.js";
+import type { IProviderOption } from "@/domain/interface/provider-option.interface";
 
-import { ELLMProvider } from "@/domain/enum/llm-provider.enum.js";
+import { ELLMProvider } from "@/domain/enum/llm-provider.enum";
 
 describe("provider-option.interface", () => {
 	it("IProviderOption has label and value", () => {

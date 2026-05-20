@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { ELLMProvider } from "@/domain/enum/llm-provider.enum.js";
+import { ELLMProvider } from "@/domain/enum/llm-provider.enum";
 
 describe("llm-provider.enum", () => {
 	it("exports all expected provider values", () => {

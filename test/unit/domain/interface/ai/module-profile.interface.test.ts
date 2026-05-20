@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 
-import type { IAiModuleProfile } from "@/domain/interface/ai/module-profile.interface.js";
+import type { IAiModuleProfile } from "@/domain/interface/ai/module-profile.interface";
 
-import { ELLMProvider } from "@/domain/enum/llm-provider.enum.js";
+import { ELLMProvider } from "@/domain/enum/llm-provider.enum";
 
 describe("module-profile.interface", () => {
 	it("IAiModuleProfile has model and provider", () => {

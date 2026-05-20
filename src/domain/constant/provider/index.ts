@@ -1,3 +1,3 @@
-export * from "./credential-format.constant.js";
-export * from "./default-model.constant.js";
-export * from "./env-variable.constant.js";
+export * from "@domain/constant/provider/credential-format.constant";
+export * from "@domain/constant/provider/default-model.constant";
+export * from "@domain/constant/provider/environment-variable.constant";

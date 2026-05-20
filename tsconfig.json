@@ -20,9 +20,13 @@
 		"outDir": "./dist",
 		"paths": {
 			"@/*": ["*"],
+			"@application": ["application"],
 			"@application/*": ["application/*"],
+			"@domain": ["domain"],
 			"@domain/*": ["domain/*"],
+			"@infrastructure": ["infrastructure"],
 			"@infrastructure/*": ["infrastructure/*"],
+			"@presentation": ["presentation"],
 			"@presentation/*": ["presentation/*"]
 		},
 		"skipLibCheck": true,

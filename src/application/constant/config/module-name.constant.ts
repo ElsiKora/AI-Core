@@ -1,1 +1,5 @@
-export const CONFIG_MODULE_NAME: string = "ai-core";
+export const CONFIG_MODULE_NAME_CONSTANT: {
+	VALUE: string;
+} = {
+	VALUE: "ai-core",
+};

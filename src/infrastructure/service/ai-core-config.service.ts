@@ -1,23 +1,20 @@
+import type { IConfigService } from "@application/interface/config-service.interface";
+import type { IAiCoreConfig } from "@domain/interface/ai/core-config.interface";
+import type { IAiModuleProfile } from "@domain/interface/ai/module-profile.interface";
+import type { TAiCoreModuleId } from "@domain/type/ai-core-module-id.type";
 import type { IConfigClient, IConfigResult } from "@elsikora/configer";
-
-import type { IConfigService } from "../../application/interface/config-service.interface.js";
-import type { IAiCoreConfig } from "../../domain/interface/ai/core-config.interface.js";
-import type { IAiModuleProfile } from "../../domain/interface/ai/module-profile.interface.js";
-import type { TAiCoreModuleId } from "../../domain/type/ai-core-module-id.type.js";
 
 import path from "node:path";
 
+import { CONFIG_FILE_DIRECTORY_CONSTANT, CONFIG_MODULE_NAME_CONSTANT } from "@application/constant/config";
 import { createConfiger } from "@elsikora/configer";
+import { NodeFileSystemService } from "@infrastructure/service/node-file-system.service";
 import { stringify as stringifyJavaScript } from "javascript-stringify";
 import { stringify as stringifyYaml } from "yaml";
 
-import { CONFIG_FILE_DIRECTORY, CONFIG_MODULE_NAME } from "../../application/constant/config/index.js";
+const CONFIG_SEARCH_PLACES: Array<string> = ["package.json", `${CONFIG_FILE_DIRECTORY_CONSTANT.VALUE}/${CONFIG_MODULE_NAME_CONSTANT.VALUE}.config.js`, `${CONFIG_FILE_DIRECTORY_CONSTANT.VALUE}/${CONFIG_MODULE_NAME_CONSTANT.VALUE}.config.json`, `${CONFIG_FILE_DIRECTORY_CONSTANT.VALUE}/${CONFIG_MODULE_NAME_CONSTANT.VALUE}.config.yaml`, `${CONFIG_FILE_DIRECTORY_CONSTANT.VALUE}/${CONFIG_MODULE_NAME_CONSTANT.VALUE}.config.yml`];
 
-import { NodeFileSystemService } from "./node-file-system.service.js";
-
-const CONFIG_SEARCH_PLACES: Array<string> = ["package.json", `${CONFIG_FILE_DIRECTORY}/${CONFIG_MODULE_NAME}.config.js`, `${CONFIG_FILE_DIRECTORY}/${CONFIG_MODULE_NAME}.config.json`, `${CONFIG_FILE_DIRECTORY}/${CONFIG_MODULE_NAME}.config.yaml`, `${CONFIG_FILE_DIRECTORY}/${CONFIG_MODULE_NAME}.config.yml`];
-
-const PACKAGE_PROPERTY_PATH: Array<string> = [CONFIG_FILE_DIRECTORY.replace(/^\./, ""), CONFIG_MODULE_NAME];
+const PACKAGE_PROPERTY_PATH: Array<string> = [CONFIG_FILE_DIRECTORY_CONSTANT.VALUE.replace(/^\./, ""), CONFIG_MODULE_NAME_CONSTANT.VALUE];
 
 /**
  * Configer-based module profile storage.
@@ -30,7 +27,7 @@ export class AiCoreConfigService implements IConfigService {
 	constructor(
 		fileSystemService: NodeFileSystemService = new NodeFileSystemService(),
 		configClient: IConfigClient<IAiCoreConfig> = createConfiger<IAiCoreConfig>({
-			moduleName: CONFIG_MODULE_NAME,
+			moduleName: CONFIG_MODULE_NAME_CONSTANT.VALUE,
 			packageProperty: PACKAGE_PROPERTY_PATH,
 			searchPlaces: CONFIG_SEARCH_PLACES,
 			searchStrategy: "workspace",
@@ -91,7 +88,7 @@ export class AiCoreConfigService implements IConfigService {
 	}
 
 	private getDefaultConfigPath(): string {
-		return path.join(process.cwd(), CONFIG_FILE_DIRECTORY, `${CONFIG_MODULE_NAME}.config.js`);
+		return path.join(process.cwd(), CONFIG_FILE_DIRECTORY_CONSTANT.VALUE, `${CONFIG_MODULE_NAME_CONSTANT.VALUE}.config.js`);
 	}
 
 	private isConfig(value: unknown): value is IAiCoreConfig {

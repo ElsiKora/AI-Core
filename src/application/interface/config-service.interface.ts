@@ -1,6 +1,6 @@
-import type { IAiCoreConfig } from "../../domain/interface/ai/core-config.interface.js";
-import type { IAiModuleProfile } from "../../domain/interface/ai/module-profile.interface.js";
-import type { TAiCoreModuleId } from "../../domain/type/ai-core-module-id.type.js";
+import type { IAiCoreConfig } from "@domain/interface/ai/core-config.interface";
+import type { IAiModuleProfile } from "@domain/interface/ai/module-profile.interface";
+import type { TAiCoreModuleId } from "@domain/type/ai-core-module-id.type";
 
 /**
  * Persistent configuration port.

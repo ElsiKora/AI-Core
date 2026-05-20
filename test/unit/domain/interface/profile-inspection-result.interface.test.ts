@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest";
 
-import type { TProfileInspectionResult } from "@/domain/interface/profile-inspection-result.interface.js";
+import type { TProfileInspectionResult } from "@/domain/type/profile-inspection-result.type";
 
-import { EProfileInspectionStatus } from "@/domain/enum/profile-inspection-status.enum.js";
-import { ELLMProvider } from "@/domain/enum/llm-provider.enum.js";
-import { Credential } from "@/domain/value-object/credential.value-object.js";
+import { EProfileInspectionStatus } from "@/domain/enum/profile-inspection-status.enum";
+import { ELLMProvider } from "@/domain/enum/llm-provider.enum";
+import { Credential } from "@/domain/value-object/credential.value-object";
 
 describe("profile-inspection-result.interface", () => {
 	it("supports all canonical inspection result variants", () => {

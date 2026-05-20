@@ -1,5 +1,4 @@
-/* eslint-disable @elsikora/sonar/redundant-type-aliases */
 /**
  * Package/module IDs supported by AI-Core profiles.
  */
-export type TAiCoreModuleId = string;
+export type TAiCoreModuleId = { readonly AI_CORE_MODULE_ID_BRAND?: never } & string;

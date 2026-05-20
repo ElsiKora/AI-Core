@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { EVercelAiGatewayModel } from "@/domain/enum/vercel-ai-gateway-model.enum.js";
+import { EVercelAiGatewayModel } from "@/domain/enum/vercel-ai-gateway-model.enum";
 
 describe("vercel-ai-gateway-model.enum", () => {
 	it("exports known model values", () => {

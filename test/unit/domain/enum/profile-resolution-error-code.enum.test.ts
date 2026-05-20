@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { EProfileResolutionErrorCode } from "@/domain/enum/profile-resolution-error-code.enum.js";
+import { EProfileResolutionErrorCode } from "@/domain/enum/profile-resolution-error-code.enum";
 
 describe("profile-resolution-error-code.enum", () => {
 	it("exposes canonical error codes", () => {

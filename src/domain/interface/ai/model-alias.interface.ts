@@ -1,4 +1,4 @@
-import type { ELLMProvider } from "../../enum/llm-provider.enum.js";
+import type { ELLMProvider } from "@domain/enum/llm-provider.enum";
 
 /**
  * Alias entry for provider/model pair.

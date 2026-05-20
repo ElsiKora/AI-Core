@@ -1,1 +1,1 @@
-export * from "./profile-resolution.error.js";
+export * from "@domain/error/profile-resolution.error";

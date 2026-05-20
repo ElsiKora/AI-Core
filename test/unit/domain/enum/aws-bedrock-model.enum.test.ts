@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { EAWSBedrockModel } from "@/domain/enum/aws-bedrock-model.enum.js";
+import { EAWSBedrockModel } from "@/domain/enum/aws-bedrock-model.enum";
 
 describe("aws-bedrock-model.enum", () => {
 	it("exports known model values", () => {

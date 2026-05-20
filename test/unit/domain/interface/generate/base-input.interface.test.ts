@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
-import type { IGenerateBaseInput } from "@/domain/interface/generate/base-input.interface.js";
-import { ELLMMessageRole } from "@/domain/enum/llm-message-role.enum.js";
+import type { IGenerateBaseInput } from "@/domain/interface/generate/base-input.interface";
+import { ELLMMessageRole } from "@/domain/enum/llm-message-role.enum";
 
 describe("base-input.interface", () => {
 	it("IGenerateBaseInput supports common generation options", () => {

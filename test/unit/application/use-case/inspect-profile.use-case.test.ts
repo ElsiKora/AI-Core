@@ -1,14 +1,14 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-import type { IConfigService } from "@/application/interface/config-service.interface.js";
-import type { ICredentialResolver } from "@/application/interface/credential-resolver.interface.js";
+import type { IConfigService } from "@/application/interface/config-service.interface";
+import type { ICredentialResolver } from "@/application/interface/credential-resolver.interface";
 
-import type { IAiCoreConfig } from "@/domain/interface/ai/core-config.interface.js";
+import type { IAiCoreConfig } from "@/domain/interface/ai/core-config.interface";
 
-import { InspectProfileUseCase } from "@/application/use-case/inspect-profile.use-case.js";
-import { EProfileInspectionStatus } from "@/domain/enum/profile-inspection-status.enum.js";
-import { ELLMProvider } from "@/domain/enum/llm-provider.enum.js";
-import { Credential } from "@/domain/value-object/credential.value-object.js";
+import { InspectProfileUseCase } from "@/application/use-case/inspect-profile.use-case";
+import { EProfileInspectionStatus } from "@/domain/enum/profile-inspection-status.enum";
+import { ELLMProvider } from "@/domain/enum/llm-provider.enum";
+import { Credential } from "@/domain/value-object/credential.value-object";
 
 describe("InspectProfileUseCase", () => {
 	const mockConfigService: IConfigService = {

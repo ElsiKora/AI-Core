@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { EAzureOpenAIModel } from "@/domain/enum/azure-openai-model.enum.js";
+import { EAzureOpenAIModel } from "@/domain/enum/azure-openai-model.enum";
 
 describe("azure-openai-model.enum", () => {
 	it("exports known model values", () => {

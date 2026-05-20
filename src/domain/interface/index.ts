@@ -1,7 +1,8 @@
-export type * from "./ai/index.js";
-export type * from "./generate/index.js";
-export type * from "./llm/index.js";
-export type * from "./profile-inspection-result.interface.js";
-export type * from "./provider-option.interface.js";
-export type * from "./resolved-module-profile.interface.js";
-export type * from "./resolved-module-runtime-profile.interface.js";
+export type * from "@domain/interface/ai";
+export type * from "@domain/interface/generate";
+export type * from "@domain/interface/llm";
+export type * from "@domain/interface/profile-inspection-result";
+export type * from "@domain/interface/profile-resolution-error";
+export type * from "@domain/interface/provider-option.interface";
+export type * from "@domain/interface/resolved-module-profile.interface";
+export type * from "@domain/interface/resolved-module-runtime-profile.interface";

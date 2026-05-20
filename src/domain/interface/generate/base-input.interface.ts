@@ -1,14 +1,11 @@
-import type { ILlmMessage } from "../llm/message.interface.js";
+import type { IAiRuntimeOptions } from "@domain/interface/ai/runtime-options.interface";
+import type { ILlmMessage } from "@domain/interface/llm/message.interface";
 
 /**
  * Shared generation input fields.
  */
-export interface IGenerateBaseInput {
-	maxTokens?: number;
+export interface IGenerateBaseInput extends IAiRuntimeOptions {
 	messages?: Array<ILlmMessage>;
 	model?: string;
 	prompt?: string;
-	retries?: number;
-	temperature?: number;
-	validationRetries?: number;
 }

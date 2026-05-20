@@ -1,12 +1,12 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-import type { ICliInterfaceService } from "@/application/interface/cli-interface-service.interface.js";
-import type { ICredentialResolver } from "@/application/interface/credential-resolver.interface.js";
+import type { ICliInterfaceService } from "@/application/interface/cli-interface-service.interface";
+import type { ICredentialResolver } from "@/application/interface/credential-resolver.interface";
 
-import { ELLMProvider } from "@/domain/enum/llm-provider.enum.js";
-import { Credential } from "@/domain/value-object/credential.value-object.js";
+import { ELLMProvider } from "@/domain/enum/llm-provider.enum";
+import { Credential } from "@/domain/value-object/credential.value-object";
 
-import { PromptCredentialUseCase } from "@/application/use-case/prompt-credential.use-case.js";
+import { PromptCredentialUseCase } from "@/application/use-case/prompt-credential.use-case";
 
 describe("PromptCredentialUseCase", () => {
 	const mockCredentialResolver: ICredentialResolver = {
@@ -43,7 +43,17 @@ describe("PromptCredentialUseCase", () => {
 
 		const credential = await useCase.execute(ELLMProvider.OPENAI);
 
-		expect(mockCliInterface.info).toHaveBeenCalled();
+		expect(mockCliInterface.info).not.toHaveBeenCalled();
+		expect(mockCliInterface.password).toHaveBeenCalledWith("Enter credential for provider 'openai':");
+		expect(credential.getValue()).toBe("manual-key");
+	});
+
+	it("prompts without reading environment credential when bypass is requested", async () => {
+		vi.mocked(mockCliInterface.password).mockResolvedValue("manual-key");
+
+		const credential = await useCase.execute(ELLMProvider.OPENAI, true);
+
+		expect(mockCredentialResolver.resolve).not.toHaveBeenCalled();
 		expect(mockCliInterface.password).toHaveBeenCalledWith("Enter credential for provider 'openai':");
 		expect(credential.getValue()).toBe("manual-key");
 	});

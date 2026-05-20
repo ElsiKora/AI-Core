@@ -1,7 +1,7 @@
 import type { IConfigClient, IConfigResult, IWatchHandle } from "@elsikora/configer";
-import type { IAiCoreConfig } from "@/domain/interface/ai/core-config.interface.js";
-import type { IAiModuleProfile } from "@/domain/interface/ai/module-profile.interface.js";
-import type { TAiCoreModuleId } from "@/domain/type/ai-core-module-id.type.js";
+import type { IAiCoreConfig } from "@/domain/interface/ai/core-config.interface";
+import type { IAiModuleProfile } from "@/domain/interface/ai/module-profile.interface";
+import type { TAiCoreModuleId } from "@/domain/type/ai-core-module-id.type";
 
 import { mkdir, mkdtemp, writeFile } from "node:fs/promises";
 import os from "node:os";
@@ -10,9 +10,9 @@ import path from "node:path";
 import { createConfiger } from "@elsikora/configer";
 import { describe, expect, it, vi } from "vitest";
 
-import { ELLMProvider } from "@/domain/enum/llm-provider.enum.js";
-import { AiCoreConfigService } from "@/infrastructure/service/ai-core-config.service.js";
-import { NodeFileSystemService } from "@/infrastructure/service/node-file-system.service.js";
+import { ELLMProvider } from "@/domain/enum/llm-provider.enum";
+import { AiCoreConfigService } from "@/infrastructure/service/ai-core-config.service";
+import { NodeFileSystemService } from "@/infrastructure/service/node-file-system.service";
 
 const createMockConfigClient = (
 	overrides: Partial<IConfigClient<IAiCoreConfig>> = {},

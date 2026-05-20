@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 
-import type { ILlmModelOption } from "@/domain/interface/llm/model-option.interface.js";
+import type { ILlmModelOption } from "@/domain/interface/llm/model-option.interface";
 
-import { ELLMProvider } from "@/domain/enum/llm-provider.enum.js";
+import { ELLMProvider } from "@/domain/enum/llm-provider.enum";
 
 describe("model-option.interface", () => {
 	it("ILlmModelOption has label, value, provider, isDefault", () => {

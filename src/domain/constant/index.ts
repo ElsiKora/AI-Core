@@ -1,2 +1,2 @@
-export * from "./numeric.constant.js";
-export * from "./provider/index.js";
+export * from "@domain/constant/numeric.constant";
+export * from "@domain/constant/provider";

@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 
-import type { TGenerateInput } from "@/domain/interface/generate/input.interface.js";
-import { EGenerateMode } from "@/domain/enum/generate-mode.enum.js";
-import { ELLMProvider } from "@/domain/enum/llm-provider.enum.js";
+import type { TGenerateInput } from "@/domain/interface/generate/input.interface";
+import { EGenerateMode } from "@/domain/enum/generate-mode.enum";
+import { ELLMProvider } from "@/domain/enum/llm-provider.enum";
 
 describe("input.interface", () => {
 	it("TGenerateInput supports profile mode", () => {
