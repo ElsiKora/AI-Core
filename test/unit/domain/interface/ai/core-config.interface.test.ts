@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 
-import { ELLMProvider } from "@/domain/enum/llm-provider.enum.js";
+import { ELLMProvider } from "@/domain/enum/llm-provider.enum";
 
-import type { IAiCoreConfig } from "@/domain/interface/ai/core-config.interface.js";
+import type { IAiCoreConfig } from "@/domain/interface/ai/core-config.interface";
 
 describe("core-config.interface", () => {
 	it("IAiCoreConfig can have modules and aliases", () => {

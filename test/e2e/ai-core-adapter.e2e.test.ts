@@ -1,4 +1,4 @@
-import type { ICliInterfaceService } from "../../src/application/interface/cli-interface-service.interface.js";
+import type { ICliInterfaceService } from "@application/interface/cli-interface-service.interface";
 
 import { afterEach, describe, expect, it, vi } from "vitest";
 
@@ -6,10 +6,10 @@ import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 
-import { EProfileInspectionStatus } from "../../src/domain/enum/profile-inspection-status.enum.js";
-import { EProfileResolutionErrorCode } from "../../src/domain/enum/profile-resolution-error-code.enum.js";
-import { AiCoreAdapter } from "../../src/presentation/ai-core/adapter.js";
-import { ELLMProvider } from "../../src/domain/enum/llm-provider.enum.js";
+import { EProfileInspectionStatus } from "@domain/enum/profile-inspection-status.enum";
+import { EProfileResolutionErrorCode } from "@domain/enum/profile-resolution-error-code.enum";
+import { AiCoreAdapter } from "@presentation/ai-core/adapter";
+import { ELLMProvider } from "@domain/enum/llm-provider.enum";
 
 /**
  * Minimal e2e smoke test for AiCoreAdapter.

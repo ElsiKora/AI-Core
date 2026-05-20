@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { EProfileInspectionStatus } from "@/domain/enum/profile-inspection-status.enum.js";
+import { EProfileInspectionStatus } from "@/domain/enum/profile-inspection-status.enum";
 
 describe("profile-inspection-status.enum", () => {
 	it("exposes canonical inspection statuses", () => {

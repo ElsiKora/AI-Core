@@ -1,7 +1,6 @@
-import type { EGenerateMode } from "../../enum/generate-mode.enum.js";
-import type { ELLMProvider } from "../../enum/llm-provider.enum.js";
-
-import type { IGenerateBaseInput } from "./base-input.interface.js";
+import type { EGenerateMode } from "@domain/enum/generate-mode.enum";
+import type { ELLMProvider } from "@domain/enum/llm-provider.enum";
+import type { IGenerateBaseInput } from "@domain/interface/generate/base-input.interface";
 
 /**
  * Direct generation mode input.

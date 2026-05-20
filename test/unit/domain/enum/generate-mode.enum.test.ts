@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { EGenerateMode } from "@/domain/enum/generate-mode.enum.js";
+import { EGenerateMode } from "@/domain/enum/generate-mode.enum";
 
 describe("generate-mode.enum", () => {
 	it("exports expected generation modes", () => {

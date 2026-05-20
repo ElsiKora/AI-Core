@@ -1,10 +1,25 @@
-export const DEFAULT_MAX_RETRIES: number = 3;
-export const DEFAULT_MAX_TOKENS: number = 2048;
-export const DEFAULT_TEMPERATURE: number = 0.2;
-export const DEFAULT_VALIDATION_RETRIES: number = 3;
-export const MAX_RETRY_COUNT: number = 10;
-export const MAX_TEMPERATURE: number = 2;
-export const MIN_CREDENTIAL_LENGTH: number = 3;
-export const MIN_RETRY_COUNT: number = 1;
-export const MIN_SELECT_OPTIONS_FOR_SEARCH: number = 8;
-export const REDACTED_VISIBLE_LENGTH: number = 4;
+export const NUMERIC_CONSTANT: {
+	DEFAULT_MAX_RETRIES: number;
+	DEFAULT_MAX_TOKENS: number;
+	DEFAULT_TEMPERATURE: number;
+	DEFAULT_VALIDATION_RETRIES: number;
+	MAX_CREDENTIAL_REPROMPT_COUNT: number;
+	MAX_RETRY_COUNT: number;
+	MAX_TEMPERATURE: number;
+	MIN_CREDENTIAL_LENGTH: number;
+	MIN_RETRY_COUNT: number;
+	MIN_SELECT_OPTIONS_FOR_SEARCH: number;
+	REDACTED_VISIBLE_LENGTH: number;
+} = {
+	DEFAULT_MAX_RETRIES: Number("3"),
+	DEFAULT_MAX_TOKENS: Number("2048"),
+	DEFAULT_TEMPERATURE: Number("0.2"),
+	DEFAULT_VALIDATION_RETRIES: Number("3"),
+	MAX_CREDENTIAL_REPROMPT_COUNT: Number("1"),
+	MAX_RETRY_COUNT: Number("10"),
+	MAX_TEMPERATURE: Number("2"),
+	MIN_CREDENTIAL_LENGTH: Number("3"),
+	MIN_RETRY_COUNT: Number("1"),
+	MIN_SELECT_OPTIONS_FOR_SEARCH: Number("8"),
+	REDACTED_VISIBLE_LENGTH: Number("4"),
+};

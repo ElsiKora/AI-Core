@@ -1,4 +1,4 @@
-import type { ISelectOption } from "./select-option.interface.js";
+import type { ISelectOption } from "@application/interface/select-option.interface";
 
 /**
  * CLI adapter port for interactive configuration.

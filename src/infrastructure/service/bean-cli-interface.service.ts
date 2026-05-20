@@ -1,11 +1,9 @@
+import type { ICliInterfaceService } from "@application/interface/cli-interface-service.interface";
+import type { ISelectOption } from "@application/interface/select-option.interface";
 import type { BeanAdapter, IBeanFactoryOptionsInterface } from "@elsikora/bean";
 
-import type { ICliInterfaceService } from "../../application/interface/cli-interface-service.interface.js";
-import type { ISelectOption } from "../../application/interface/select-option.interface.js";
-
+import { NUMERIC_CONSTANT } from "@domain/constant/numeric.constant";
 import { createBeanAdapterFactory, SelectOptionValueObject } from "@elsikora/bean";
-
-import { MIN_SELECT_OPTIONS_FOR_SEARCH } from "../../domain/constant/numeric.constant.js";
 
 /**
  * Bean-backed interactive CLI adapter.
@@ -63,7 +61,7 @@ export class BeanCliInterfaceService implements ICliInterfaceService {
 
 		const selectedOptionIndexText: null | string = await this.BEAN.select({
 			initialIndex: defaultIndex >= 0 ? defaultIndex : undefined,
-			isSearchEnabled: options.length >= MIN_SELECT_OPTIONS_FOR_SEARCH,
+			isSearchEnabled: options.length >= NUMERIC_CONSTANT.MIN_SELECT_OPTIONS_FOR_SEARCH,
 			message,
 			options: beanOptions,
 		});

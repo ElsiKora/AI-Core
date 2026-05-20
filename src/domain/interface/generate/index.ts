@@ -1,6 +1,6 @@
-export type * from "./base-input.interface.js";
-export type * from "./direct-input.interface.js";
-export type * from "./input.interface.js";
-export type * from "./profile-input.interface.js";
-export type * from "./result.interface.js";
-export type * from "./stream-chunk.interface.js";
+export type * from "@domain/interface/generate/base-input.interface";
+export type * from "@domain/interface/generate/direct-input.interface";
+export type * from "@domain/interface/generate/input.interface";
+export type * from "@domain/interface/generate/profile-input.interface";
+export type * from "@domain/interface/generate/result.interface";
+export type * from "@domain/interface/generate/stream-chunk.interface";

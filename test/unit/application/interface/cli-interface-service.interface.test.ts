@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import type { ICliInterfaceService } from "@/application/interface/cli-interface-service.interface.js";
+import type { ICliInterfaceService } from "@/application/interface/cli-interface-service.interface";
 
 describe("cli-interface-service.interface", () => {
 	it("ICliInterfaceService requires select, confirm, text, password, info, success, warn", () => {

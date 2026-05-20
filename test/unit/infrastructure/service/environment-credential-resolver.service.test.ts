@@ -1,8 +1,8 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { ELLMProvider } from "@/domain/enum/llm-provider.enum.js";
+import { ELLMProvider } from "@/domain/enum/llm-provider.enum";
 
-import { EnvironmentCredentialResolver } from "@/infrastructure/service/environment-credential-resolver.service.js";
+import { EnvironmentCredentialResolver } from "@/infrastructure/service/environment-credential-resolver.service";
 
 describe("EnvironmentCredentialResolver", () => {
 	const resolver = new EnvironmentCredentialResolver();

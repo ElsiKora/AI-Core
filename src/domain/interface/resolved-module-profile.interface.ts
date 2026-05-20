@@ -1,6 +1,5 @@
-import type { Credential } from "../value-object/credential.value-object.js";
-
-import type { IResolvedModuleRuntimeProfile } from "./resolved-module-runtime-profile.interface.js";
+import type { IResolvedModuleRuntimeProfile } from "@domain/interface/resolved-module-runtime-profile.interface";
+import type { Credential } from "@domain/value-object/credential.value-object";
 
 /**
  * Fully resolved profile ready for generation.

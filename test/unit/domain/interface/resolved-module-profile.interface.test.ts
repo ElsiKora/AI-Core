@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
 
-import type { IResolvedModuleProfile } from "@/domain/interface/resolved-module-profile.interface.js";
+import type { IResolvedModuleProfile } from "@/domain/interface/resolved-module-profile.interface";
 
-import { ELLMProvider } from "@/domain/enum/llm-provider.enum.js";
-import { Credential } from "@/domain/value-object/credential.value-object.js";
+import { ELLMProvider } from "@/domain/enum/llm-provider.enum";
+import { Credential } from "@/domain/value-object/credential.value-object";
 
 describe("resolved-module-profile.interface", () => {
 	it("IResolvedModuleProfile has required fields", () => {

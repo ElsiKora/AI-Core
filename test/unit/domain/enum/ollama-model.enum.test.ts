@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { EOllamaModel } from "@/domain/enum/ollama-model.enum.js";
+import { EOllamaModel } from "@/domain/enum/ollama-model.enum";
 
 describe("ollama-model.enum", () => {
 	it("exports known model values", () => {

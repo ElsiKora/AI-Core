@@ -1,12 +1,18 @@
+import type { IGenerateResult } from "@/domain/interface/generate/result.interface";
+import type { TGenerateInput } from "@/domain/interface/generate/input.interface";
+import type { IResolvedModuleProfile } from "@/domain/interface/resolved-module-profile.interface";
+import type { TAiCoreModuleId } from "@/domain/type/ai-core-module-id.type";
+
 import { describe, expect, it } from "vitest";
 
-import { EGenerateMode } from "@/domain/enum/generate-mode.enum.js";
-import { ELLMProvider } from "@/domain/enum/llm-provider.enum.js";
-import { EProfileInspectionStatus } from "@/domain/enum/profile-inspection-status.enum.js";
-import { EProfileResolutionErrorCode } from "@/domain/enum/profile-resolution-error-code.enum.js";
-import { ProfileResolutionError } from "@/domain/error/profile-resolution.error.js";
+import { EGenerateMode } from "@/domain/enum/generate-mode.enum";
+import { ELLMProvider } from "@/domain/enum/llm-provider.enum";
+import { EProfileInspectionStatus } from "@/domain/enum/profile-inspection-status.enum";
+import { EProfileResolutionErrorCode } from "@/domain/enum/profile-resolution-error-code.enum";
+import { ProfileResolutionError } from "@/domain/error/profile-resolution.error";
+import { Credential } from "@/domain/value-object/credential.value-object";
 
-import { AiCoreAdapter } from "@/presentation/ai-core/adapter.js";
+import { AiCoreAdapter } from "@/presentation/ai-core/adapter";
 
 describe("AiCoreAdapter", () => {
 	it("create returns adapter instance", () => {
@@ -79,6 +85,56 @@ describe("AiCoreAdapter", () => {
 				prompt: "Hi",
 			} as never),
 		).rejects.toThrow();
+	});
+
+	it("uses cached profile credential when profile generation input has no explicit credential", async () => {
+		const adapter = AiCoreAdapter.create();
+		const moduleId = "commitizen" as TAiCoreModuleId;
+		const profile: IResolvedModuleProfile = {
+			credential: new Credential("sk-cached"),
+			model: "gpt-4o",
+			moduleId,
+			provider: ELLMProvider.OPENAI,
+			retries: 1,
+			validationRetries: 1,
+		};
+		let capturedInput: TGenerateInput | undefined;
+		const adapterHarness = adapter as unknown as {
+			CONTAINER: {
+				resolve: () => {
+					execute: (input: TGenerateInput) => Promise<IGenerateResult>;
+				};
+			};
+			PROFILE_CACHE: Map<TAiCoreModuleId, IResolvedModuleProfile>;
+		};
+
+		adapterHarness.PROFILE_CACHE.set(moduleId, profile);
+		adapterHarness.CONTAINER = {
+			resolve: () => ({
+				execute: async (input: TGenerateInput): Promise<IGenerateResult> => {
+					capturedInput = input;
+
+					return {
+						attempts: 1,
+						model: "gpt-4o",
+						provider: ELLMProvider.OPENAI,
+						text: "ok",
+					};
+				},
+			}),
+		};
+
+		await adapter.generate({
+			mode: EGenerateMode.PROFILE,
+			moduleId,
+			prompt: "Hi",
+		});
+
+		expect(capturedInput).toMatchObject({
+			credential: "sk-cached",
+			mode: EGenerateMode.PROFILE,
+			moduleId,
+		});
 	});
 
 	it("generateStream returns async generator and fails without profile", async () => {

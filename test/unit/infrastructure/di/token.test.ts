@@ -1,50 +1,37 @@
 import { describe, expect, it } from "vitest";
 
-import {
-	CliInterfaceServiceToken,
-	ConfigServiceToken,
-	ConfigureLlmUseCaseToken,
-	CredentialResolverToken,
-	EnsureProfileUseCaseToken,
-	GenerateTextUseCaseToken,
-	InspectProfileUseCaseToken,
-	InteractiveShellServiceToken,
-	LlmServiceToken,
-	ModelRegistryServiceToken,
-	NodeFileSystemServiceToken,
-	PromptCredentialUseCaseToken,
-} from "@/infrastructure/di/token.js";
+import { DI_TOKEN_CONSTANT } from "@/infrastructure/constant/di/token.constant";
 
 describe("DI tokens", () => {
 	it("exports all expected tokens", () => {
-		expect(CliInterfaceServiceToken).toBeDefined();
-		expect(ConfigServiceToken).toBeDefined();
-		expect(ConfigureLlmUseCaseToken).toBeDefined();
-		expect(CredentialResolverToken).toBeDefined();
-		expect(EnsureProfileUseCaseToken).toBeDefined();
-		expect(GenerateTextUseCaseToken).toBeDefined();
-		expect(InspectProfileUseCaseToken).toBeDefined();
-		expect(InteractiveShellServiceToken).toBeDefined();
-		expect(LlmServiceToken).toBeDefined();
-		expect(ModelRegistryServiceToken).toBeDefined();
-		expect(NodeFileSystemServiceToken).toBeDefined();
-		expect(PromptCredentialUseCaseToken).toBeDefined();
+		expect(DI_TOKEN_CONSTANT.CLI_INTERFACE_SERVICE).toBeDefined();
+		expect(DI_TOKEN_CONSTANT.CONFIG_SERVICE).toBeDefined();
+		expect(DI_TOKEN_CONSTANT.CONFIGURE_LLM_USE_CASE).toBeDefined();
+		expect(DI_TOKEN_CONSTANT.CREDENTIAL_RESOLVER).toBeDefined();
+		expect(DI_TOKEN_CONSTANT.ENSURE_PROFILE_USE_CASE).toBeDefined();
+		expect(DI_TOKEN_CONSTANT.GENERATE_TEXT_USE_CASE).toBeDefined();
+		expect(DI_TOKEN_CONSTANT.INSPECT_PROFILE_USE_CASE).toBeDefined();
+		expect(DI_TOKEN_CONSTANT.INTERACTIVE_SHELL_SERVICE).toBeDefined();
+		expect(DI_TOKEN_CONSTANT.LLM_SERVICE).toBeDefined();
+		expect(DI_TOKEN_CONSTANT.MODEL_REGISTRY_SERVICE).toBeDefined();
+		expect(DI_TOKEN_CONSTANT.NODE_FILE_SYSTEM_SERVICE).toBeDefined();
+		expect(DI_TOKEN_CONSTANT.PROMPT_CREDENTIAL_USE_CASE).toBeDefined();
 	});
 
 	it("tokens are unique symbols or objects", () => {
 		const tokens = [
-			CliInterfaceServiceToken,
-			ConfigServiceToken,
-			ConfigureLlmUseCaseToken,
-			CredentialResolverToken,
-			EnsureProfileUseCaseToken,
-			GenerateTextUseCaseToken,
-			InspectProfileUseCaseToken,
-			InteractiveShellServiceToken,
-			LlmServiceToken,
-			ModelRegistryServiceToken,
-			NodeFileSystemServiceToken,
-			PromptCredentialUseCaseToken,
+			DI_TOKEN_CONSTANT.CLI_INTERFACE_SERVICE,
+			DI_TOKEN_CONSTANT.CONFIG_SERVICE,
+			DI_TOKEN_CONSTANT.CONFIGURE_LLM_USE_CASE,
+			DI_TOKEN_CONSTANT.CREDENTIAL_RESOLVER,
+			DI_TOKEN_CONSTANT.ENSURE_PROFILE_USE_CASE,
+			DI_TOKEN_CONSTANT.GENERATE_TEXT_USE_CASE,
+			DI_TOKEN_CONSTANT.INSPECT_PROFILE_USE_CASE,
+			DI_TOKEN_CONSTANT.INTERACTIVE_SHELL_SERVICE,
+			DI_TOKEN_CONSTANT.LLM_SERVICE,
+			DI_TOKEN_CONSTANT.MODEL_REGISTRY_SERVICE,
+			DI_TOKEN_CONSTANT.NODE_FILE_SYSTEM_SERVICE,
+			DI_TOKEN_CONSTANT.PROMPT_CREDENTIAL_USE_CASE,
 		];
 		const unique = new Set(tokens);
 		expect(unique.size).toBe(tokens.length);

@@ -1,4 +1,4 @@
-import type { ELLMMessageRole } from "../../enum/llm-message-role.enum.js";
+import type { ELLMMessageRole } from "@domain/enum/llm-message-role.enum";
 
 /**
  * Normalized chat message.

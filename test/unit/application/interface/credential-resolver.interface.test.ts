@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import type { ICredentialResolver } from "@/application/interface/credential-resolver.interface.js";
+import type { ICredentialResolver } from "@/application/interface/credential-resolver.interface";
 
 describe("credential-resolver.interface", () => {
 	it("ICredentialResolver requires resolve method", () => {

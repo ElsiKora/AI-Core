@@ -1,1 +1,5 @@
-export const CONFIG_FILE_DIRECTORY: string = ".elsikora";
+export const CONFIG_FILE_DIRECTORY_CONSTANT: {
+	VALUE: string;
+} = {
+	VALUE: ".elsikora",
+};

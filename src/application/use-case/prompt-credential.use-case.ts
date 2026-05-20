@@ -1,10 +1,10 @@
-import type { ELLMProvider } from "../../domain/enum/llm-provider.enum.js";
-import type { Credential } from "../../domain/value-object/credential.value-object.js";
-import type { ICliInterfaceService } from "../interface/cli-interface-service.interface.js";
-import type { ICredentialResolver } from "../interface/credential-resolver.interface.js";
+import type { ICliInterfaceService } from "@application/interface/cli-interface-service.interface";
+import type { ICredentialResolver } from "@application/interface/credential-resolver.interface";
+import type { ELLMProvider } from "@domain/enum/llm-provider.enum";
+import type { Credential } from "@domain/value-object/credential.value-object";
 
-import { PROVIDER_CREDENTIAL_FORMAT_MAP } from "../../domain/constant/provider/credential-format.constant.js";
-import { Credential as CredentialValue } from "../../domain/value-object/credential.value-object.js";
+import { PROVIDER_CREDENTIAL_FORMAT_CONSTANT } from "@domain/constant/provider/credential-format.constant";
+import { Credential as CredentialValue } from "@domain/value-object/credential.value-object";
 
 /**
  * Resolves provider credential from environment or asks interactively.
@@ -19,16 +19,14 @@ export class PromptCredentialUseCase {
 		this.CLI_INTERFACE = cliInterface;
 	}
 
-	async execute(provider: ELLMProvider): Promise<Credential> {
-		const resolvedCredential: Credential | null = this.CREDENTIAL_RESOLVER.resolve(provider);
+	async execute(provider: ELLMProvider, shouldBypassEnvironmentCredential: boolean = false): Promise<Credential> {
+		const resolvedCredential: Credential | null = shouldBypassEnvironmentCredential ? null : this.CREDENTIAL_RESOLVER.resolve(provider);
 
 		if (resolvedCredential) {
 			return resolvedCredential;
 		}
 
-		const formatHint: string = PROVIDER_CREDENTIAL_FORMAT_MAP[provider] ?? "";
-
-		this.CLI_INTERFACE.info(`No environment credential found.${formatHint}`);
+		const formatHint: string = PROVIDER_CREDENTIAL_FORMAT_CONSTANT.MAP[provider] ?? "";
 
 		const credentialText: string = await this.CLI_INTERFACE.password(`Enter credential for provider '${provider}'${formatHint}:`);
 

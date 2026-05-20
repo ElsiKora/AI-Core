@@ -1,2 +1,2 @@
-export * from "./adapter.js";
-export type * from "./options.interface.js";
+export * from "@presentation/ai-core/adapter";
+export type * from "@presentation/ai-core/interface/options.interface";

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
-import type { ILlmMessage } from "@/domain/interface/llm/message.interface.js";
-import { ELLMMessageRole } from "@/domain/enum/llm-message-role.enum.js";
+import type { ILlmMessage } from "@/domain/interface/llm/message.interface";
+import { ELLMMessageRole } from "@/domain/enum/llm-message-role.enum";
 
 describe("message.interface", () => {
 	it("ILlmMessage has content and role", () => {

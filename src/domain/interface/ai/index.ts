@@ -1,4 +1,9 @@
-export type * from "./core-config.interface.js";
-export type * from "./model-alias.interface.js";
-export type * from "./module-profile.interface.js";
-export type * from "./runtime-options.interface.js";
+export type * from "@domain/interface/ai/core-config.interface";
+export type * from "@domain/interface/ai/generation-options.interface";
+export type * from "@domain/interface/ai/model-alias.interface";
+export type * from "@domain/interface/ai/module-profile.interface";
+export type * from "@domain/interface/ai/provider";
+export type * from "@domain/interface/ai/reasoning";
+export type * from "@domain/interface/ai/response-format.interface";
+export type * from "@domain/interface/ai/runtime-options.interface";
+export type * from "@domain/interface/ai/tool";

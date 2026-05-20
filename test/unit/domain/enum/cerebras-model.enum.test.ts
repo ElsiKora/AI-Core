@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { ECerebrasModel } from "@/domain/enum/cerebras-model.enum.js";
+import { ECerebrasModel } from "@/domain/enum/cerebras-model.enum";
 
 describe("cerebras-model.enum", () => {
 	it("exports known model values", () => {

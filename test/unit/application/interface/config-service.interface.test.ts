@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import type { IConfigService } from "@/application/interface/config-service.interface.js";
+import type { IConfigService } from "@/application/interface/config-service.interface";
 
 describe("config-service.interface", () => {
 	it("IConfigService requires get, set, exists, getModuleProfile, setModuleProfile", () => {

@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 
-import type { IGenerateDirectInput } from "@/domain/interface/generate/direct-input.interface.js";
-import { EGenerateMode } from "@/domain/enum/generate-mode.enum.js";
-import { ELLMProvider } from "@/domain/enum/llm-provider.enum.js";
+import type { IGenerateDirectInput } from "@/domain/interface/generate/direct-input.interface";
+import { EGenerateMode } from "@/domain/enum/generate-mode.enum";
+import { ELLMProvider } from "@/domain/enum/llm-provider.enum";
 
 describe("direct-input.interface", () => {
 	it("IGenerateDirectInput requires provider and credential", () => {

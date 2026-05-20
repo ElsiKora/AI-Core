@@ -1,7 +1,8 @@
-import type { ELLMProvider } from "../enum/llm-provider.enum.js";
-import type { Credential } from "../value-object/credential.value-object.js";
+import type { ELLMProvider } from "@domain/enum/llm-provider.enum";
+import type { IGenerationOptions } from "@domain/interface/ai/generation-options.interface";
+import type { Credential } from "@domain/value-object/credential.value-object";
 
-import { DEFAULT_MAX_RETRIES, DEFAULT_VALIDATION_RETRIES } from "../constant/numeric.constant.js";
+import { NUMERIC_CONSTANT } from "@domain/constant/numeric.constant";
 
 /**
  * Immutable generation configuration.
@@ -9,7 +10,7 @@ import { DEFAULT_MAX_RETRIES, DEFAULT_VALIDATION_RETRIES } from "../constant/num
 export class LlmConfiguration {
 	private readonly CREDENTIAL: Credential;
 
-	private readonly MAX_TOKENS: number | undefined;
+	private readonly GENERATION_OPTIONS: IGenerationOptions;
 
 	private readonly MODEL: string | undefined;
 
@@ -17,26 +18,31 @@ export class LlmConfiguration {
 
 	private readonly RETRIES: number;
 
-	private readonly TEMPERATURE: number | undefined;
-
 	private readonly VALIDATION_RETRIES: number;
 
-	constructor(provider: ELLMProvider, credential: Credential, model?: string, maxTokens?: number, temperature?: number, retries: number = DEFAULT_MAX_RETRIES, validationRetries: number = DEFAULT_VALIDATION_RETRIES) {
+	constructor(provider: ELLMProvider, credential: Credential, model?: string, maxTokens?: number, temperature?: number, retries: number = NUMERIC_CONSTANT.DEFAULT_MAX_RETRIES, validationRetries: number = NUMERIC_CONSTANT.DEFAULT_VALIDATION_RETRIES, generationOptions: IGenerationOptions = {}) {
 		this.PROVIDER = provider;
 		this.CREDENTIAL = credential;
 		this.MODEL = model;
-		this.MAX_TOKENS = maxTokens;
-		this.TEMPERATURE = temperature;
 		this.RETRIES = retries;
 		this.VALIDATION_RETRIES = validationRetries;
+		this.GENERATION_OPTIONS = {
+			...generationOptions,
+			maxTokens: maxTokens ?? generationOptions.maxTokens,
+			temperature: temperature ?? generationOptions.temperature,
+		};
 	}
 
 	getCredential(): Credential {
 		return this.CREDENTIAL;
 	}
 
+	getGenerationOptions(): IGenerationOptions {
+		return this.GENERATION_OPTIONS;
+	}
+
 	getMaxTokens(): number | undefined {
-		return this.MAX_TOKENS;
+		return this.GENERATION_OPTIONS.maxTokens;
 	}
 
 	getModel(): string | undefined {
@@ -52,7 +58,7 @@ export class LlmConfiguration {
 	}
 
 	getTemperature(): number | undefined {
-		return this.TEMPERATURE;
+		return this.GENERATION_OPTIONS.temperature;
 	}
 
 	getValidationRetries(): number {
@@ -60,10 +66,10 @@ export class LlmConfiguration {
 	}
 
 	withCredential(credential: Credential): LlmConfiguration {
-		return new LlmConfiguration(this.PROVIDER, credential, this.MODEL, this.MAX_TOKENS, this.TEMPERATURE, this.RETRIES, this.VALIDATION_RETRIES);
+		return new LlmConfiguration(this.PROVIDER, credential, this.MODEL, this.getMaxTokens(), this.getTemperature(), this.RETRIES, this.VALIDATION_RETRIES, this.GENERATION_OPTIONS);
 	}
 
 	withModel(model: string): LlmConfiguration {
-		return new LlmConfiguration(this.PROVIDER, this.CREDENTIAL, model, this.MAX_TOKENS, this.TEMPERATURE, this.RETRIES, this.VALIDATION_RETRIES);
+		return new LlmConfiguration(this.PROVIDER, this.CREDENTIAL, model, this.getMaxTokens(), this.getTemperature(), this.RETRIES, this.VALIDATION_RETRIES, this.GENERATION_OPTIONS);
 	}
 }

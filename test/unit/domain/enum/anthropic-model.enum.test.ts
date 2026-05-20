@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { EAnthropicModel } from "@/domain/enum/anthropic-model.enum.js";
+import { EAnthropicModel } from "@/domain/enum/anthropic-model.enum";
 
 describe("anthropic-model.enum", () => {
 	it("exports known model values", () => {
